@@ -1,0 +1,31 @@
+ALGORITHM Compter_Phrase
+VAR
+    phrase: STRING
+    longueur_phrase, nombre_mots, nombre_voyelles: INTEGER
+    voyelles: STRING = "aeiouAEIOU"
+    i: INTEGER
+BEGIN
+    phrase <- "Le chat noir dort sur le tapis."
+    
+    longueur_phrase <- 0
+    nombre_mots <- 1  // Initialisation du compteur de mots à 1 car la phrase a au moins un mot
+    nombre_voyelles <- 0
+    
+    FOR i FROM 1 TO LENGTH(phrase) DO
+        IF phrase[i] = " " THEN  // Si on rencontre un espace, c'est le début d'un nouveau mot
+            nombre_mots <- nombre_mots + 1
+        ELSE IF phrase[i] IN voyelles THEN  // Si le caractère est une voyelle, on incrémente le compteur de voyelles
+            nombre_voyelles <- nombre_voyelles + 1
+        END IF
+        longueur_phrase <- longueur_phrase + 1  // Incrémentation de la longueur de la phrase
+    END FOR
+    
+    IF longueur_phrase > 1 THEN
+        OUTPUT "La phrase a une longueur de", longueur_phrase, "caractères."
+    ELSE
+        OUTPUT "La phrase est vide."
+    END IF
+    
+    OUTPUT "La phrase contient", nombre_mots, "mots."
+    OUTPUT "La phrase contient", nombre_voyelles, "voyelles."
+END
